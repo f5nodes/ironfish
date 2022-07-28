@@ -280,7 +280,7 @@ function deleteIronfish {
 	sudo rm -r $HOME/ironfish
 }
 
-PS3='Вкажіть Ваш вибір (введіть номер опції та натисніть Enter): '
+PS3='Вкажіть Ваш вибір (введіть номер опції та натисніть Enter):  '
 # options=("Setup vars" "Install" "Upgrade" "Upgrade (beta)" "Backup wallet" "Install snapshot" "Delete" "Quit")
 options=("Install" "Upgrade" "Upgrade (beta)" "Backup wallet" "Install snapshot" "Delete" "Quit")
 #options=("Install" "Upgrade" "Upgrade (beta)" "Backup wallet" "Delete" "Quit")
