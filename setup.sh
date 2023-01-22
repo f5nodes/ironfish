@@ -179,9 +179,26 @@ function deleteIronfish {
 	sudo rm -rf $HOME/ironfish $HOME/.ironfish $(which ironfish)
 }
 
+function installAutoAssets() {
+	rm -rf $HOME/ironfish-auto
+	mkdir $HOME/ironfish-auto
+
+	read -p "Вкажіть свою пошту: " IRONFISH_EMAIL
+	(crontab -l; echo "0 0 * * * echo $IRONFISH_EMAIL | ironfish faucet | tee -i $HOME/ironfish-auto/faucet.log >(echo -n $(date)\\n >> $HOME/ironfish-auto/faucet.log)") | crontab -
+	
+	apt install bc -y
+	wget -q -O $HOME/ironfish-auto/bms.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh # thanks @cyberomanov
+	chmod u+x $HOME/ironfish-auto/bms.sh
+	(crontab -l; echo "0 0 * * 5 ./$HOME/ironfish-auto/bms.sh | tee -i $HOME/ironfish-auto/bms.log >(echo -n $(date)\\n >> $HOME/ironfish-auto/bms.log)") | crontab -
+
+	echo -e "\nAuto-Faucet & Auto-Assets скрипт \e[92mвстановлений\e[39m"
+	echo -e "Auto-Faucet \e[92mкожен день 00:00\e[0m, Auto-Assets \e[92mкожна п'ятниця 00:00\e[0m"
+	echo -e "Подивитись логи \e[92mtail -f ironfish-auto/faucet.log\e[0m та \e[92mtail -f ironfish-auto/bms.log\e[0m\n"
+}
+
 
 PS3='Вкажіть Ваш вибір (введіть номер опції та натисніть Enter): '
-options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete" "Quit")
+options=("Install" "Upgrade" "Backup wallet" "Install snapshot" "Delete node" "Install Auto-Assets" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -215,10 +232,15 @@ do
 			echo -e '\n\e[33mСнапшот встановлений, нода запущена.\e[0m\n' && sleep 1
 			break
 			;;
-		"Delete")
+		"Delete node")
 			echo -e '\n\e[31mВидалення...\e[0m\n' && sleep 1
 			deleteIronfish
 			echo -e '\n\e[42mIronfish видалений!\e[0m\n' && sleep 1
+			break
+            ;;
+		"Install Auto-Assets")
+			echo -e '\n\e[31mВстановлення Auto-Assets...\e[0m\n' && sleep 1
+			installAutoAssets
 			break
             ;;
         "Quit")
