@@ -189,11 +189,12 @@ function installAutoAssets() {
 	apt install bc -y
 	wget -q -O $HOME/ironfish-auto/assets.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh # thanks @cyberomanov
 	chmod u+x $HOME/ironfish-auto/assets.sh
-	(crontab -l; echo "0 0 * * 5 ./$HOME/ironfish-auto/assets.sh | tee -i $HOME/ironfish-auto/assets.log") | crontab -
+	(crontab -l; echo "0 0 * * 5 $HOME/ironfish-auto/assets.sh | tee -i $HOME/ironfish-auto/assets.log") | crontab -
 
 	echo -e "\nAuto-Faucet & Auto-Assets скрипт \e[92mвстановлений\e[39m"
 	echo -e "Auto-Faucet \e[92mкожен день 00:00\e[0m, Auto-Assets \e[92mкожна п'ятниця 00:00\e[0m"
 	echo -e "Подивитись логи \e[92mtail -f ironfish-auto/faucet.log\e[0m та \e[92mtail -f ironfish-auto/assets.log\e[0m\n"
+	echo -e "by \e[92mt.me/f5nodes\e[0m / \e[92mf5nodes.com\e[0m\n"
 }
 
 
