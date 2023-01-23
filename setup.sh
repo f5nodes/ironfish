@@ -187,7 +187,7 @@ function installAutoAssets() {
 	(crontab -l; echo "0 0 * * * echo $IRONFISH_EMAIL | ironfish faucet | tee -i $HOME/ironfish-auto/faucet.log") | crontab -
 	
 	apt install bc -y
-	wget -q -O $HOME/ironfish-auto/assets.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh # thanks @cyberomanov
+	wget -q -O $HOME/ironfish-auto/assets.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/mbs.sh # thanks @cyberomanov
 	chmod u+x $HOME/ironfish-auto/assets.sh
 	(crontab -l; echo "0 0 * * 5 $HOME/ironfish-auto/assets.sh | tee -i $HOME/ironfish-auto/assets.log") | crontab -
 
