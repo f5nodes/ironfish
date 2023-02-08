@@ -191,7 +191,7 @@ function installAutoAssets() {
 	chmod u+x $HOME/ironfish-auto/assets.sh
 
 	echo -e "\nAuto-Faucet & Auto-Assets скрипт \e[92mвстановлений\e[39m"
-	echo -e "Auto-Faucet \e[92mкожен день 00:00\e[0m, Auto-Assets \e[92mк/root/ironfish-auto/assets.sh\e[0m"
+	echo -e "Auto-Faucet \e[92mкожен день 00:00\e[0m, Auto-Assets \e[92m/root/ironfish-auto/assets.sh\e[0m"
 	echo -e "Подивитись логи auto-faucet \e[92mtail -f ironfish-auto/faucet.log\e[0m\n"
 }
 
